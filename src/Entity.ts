@@ -36,7 +36,7 @@ class Entity {
   update(delta: number) {
     this.updateGravity(delta)
 
-    if (this.game.keyboard.keys.SPACE && this.grounded) {
+    if ((this.game.keyboard.keys.SPACE || this.game.keyboard.keys.W) && this.grounded ) {
       this.y -= 1;
       this.velocity = -2;
       this.grounded = false
@@ -59,16 +59,16 @@ class Entity {
   }
   updateGravity(delta: number) {
     if (this.grounded) return;
-    const collidedTile = this.game.Map.isCollidingY(this.x, this.y + this.height);
+    this.velocity += this.velocitySpeed * delta;
+    let newY = this.y + this.velocity * delta;
+    const collidedTile = this.game.Map.isCollidingY(this.x, newY + this.height);
     if (collidedTile) {
       this.y = collidedTile[2] - this.height;
       this.velocity = 0;
       this.grounded = true;
       return;
     }
-    this.grounded = false;
-    this.velocity += this.velocitySpeed * delta;
-    this.y += this.velocity * delta;
+    this.y = newY;
   }
 }
 
