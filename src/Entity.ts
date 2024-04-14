@@ -1,5 +1,9 @@
 import { Game } from "./Game";
 
+interface Options {
+  controls?: boolean
+}
+
 class Entity {
   game: Game;
   context: CanvasRenderingContext2D;
@@ -10,14 +14,16 @@ class Entity {
   velocitySpeed: number;
   velocity: number;
   grounded: boolean;
+  options?: Options;
 
 
-  constructor(game: Game) {
+  constructor(game: Game, x: number, y: number, options?: Options ) {
+    this.options = options;
     this.game = game;
     this.context = game.context;
 
-    this.x = 0;
-    this.y = 0;
+    this.x = x;
+    this.y = y;
 
     this.width = 50;
     this.height = 100;
@@ -26,6 +32,7 @@ class Entity {
     this.velocity = 0;
 
     this.grounded = false;
+
 
   }
 
@@ -36,20 +43,22 @@ class Entity {
   update(delta: number) {
     this.updateGravity(delta)
 
-    if ((this.game.keyboard.keys.SPACE || this.game.keyboard.keys.W) && this.grounded ) {
-      this.y -= 1;
-      this.velocity = -2;
-      this.grounded = false
-    }
-
-    if (this.game.keyboard.keys.D) {
-      this.x += (this.game.keyboard.keys.SHIFT ? 2 : 1) * delta;
-      this.grounded = false
-    }
-
-    if (this.game.keyboard.keys.A) {
-      this.x -= (this.game.keyboard.keys.SHIFT ? 2 : 1) * delta;
-      this.grounded = false
+    if (this.options?.controls) {
+      if ((this.game.keyboard.keys.SPACE || this.game.keyboard.keys.W) && this.grounded ) {
+        this.y -= 1;
+        this.velocity = -2;
+        this.grounded = false
+      }
+  
+      if (this.game.keyboard.keys.D) {
+        this.x += (this.game.keyboard.keys.SHIFT ? 2 : 1) * delta;
+        this.grounded = false
+      }
+  
+      if (this.game.keyboard.keys.A) {
+        this.x -= (this.game.keyboard.keys.SHIFT ? 2 : 1) * delta;
+        this.grounded = false
+      }
     }
 
   }

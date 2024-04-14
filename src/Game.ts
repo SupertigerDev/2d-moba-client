@@ -11,7 +11,9 @@ class Game {
   debugDisplay: DebugDisplay;
 
   Map: Map;
-  entity: Entity;
+  player: Entity;
+
+  tower: Entity
 
   keyboard: Keyboard;
 
@@ -26,7 +28,9 @@ class Game {
 
     this.Map = new Map(this);
 
-    this.entity = new Entity(this);
+    this.player = new Entity(this, 100, 100,{controls: true});
+
+    this.tower = new Entity(this, 1800, 100, {controls: false});
 
   }
   frame (delta: number) {
@@ -35,7 +39,9 @@ class Game {
 
     
     this.Map.frame(delta);    
-    this.entity.frame(delta);
+    this.player.frame(delta);
+
+    this.tower.frame(delta);
     
     this.debugDisplay.frame(delta);
   }
