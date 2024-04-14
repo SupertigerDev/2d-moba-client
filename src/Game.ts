@@ -1,8 +1,9 @@
 import { DebugDisplay } from "./DebugDisplay";
 import { Engine } from "./Engine";
-import { Entity } from "./Entity";
 import { Keyboard } from "./Keyboard";
 import { Map } from "./Map";
+import { Player } from "./Player";
+import { Tower } from "./Tower";
 
 
 class Game {
@@ -11,9 +12,9 @@ class Game {
   debugDisplay: DebugDisplay;
 
   Map: Map;
-  player: Entity;
+  player: Player;
 
-  tower: Entity
+  tower: Tower;
 
   keyboard: Keyboard;
 
@@ -28,9 +29,9 @@ class Game {
 
     this.Map = new Map(this);
 
-    this.player = new Entity(this, 100, 100,{controls: true});
+    this.player = new Player(this, 100, 100,{controls: true});
 
-    this.tower = new Entity(this, 1800, 100, {controls: false});
+    this.tower = new Tower(this, 1800, 100, {controls: false});
 
   }
   frame (delta: number) {

@@ -1,6 +1,6 @@
 import { Game } from "./Game";
 
-interface Options {
+export interface EntityOptions {
   controls?: boolean
 }
 
@@ -14,10 +14,10 @@ class Entity {
   velocitySpeed: number;
   velocity: number;
   grounded: boolean;
-  options?: Options;
+  options?: EntityOptions;
 
 
-  constructor(game: Game, x: number, y: number, options?: Options ) {
+  constructor(game: Game, x: number, y: number, options?: EntityOptions ) {
     this.options = options;
     this.game = game;
     this.context = game.context;
