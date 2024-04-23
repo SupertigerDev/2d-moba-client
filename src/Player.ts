@@ -3,7 +3,7 @@ import { Game } from "./Game";
 
 class Player extends Entity {
   constructor(game: Game, x: number, y: number, options?: EntityOptions ) {
-    super(game, x, y, options);
+    super(game, x, y, 50, 100, options);
   }
 
   update(delta: number) {

@@ -17,7 +17,7 @@ class Entity {
   options?: EntityOptions;
 
 
-  constructor(game: Game, x: number, y: number, options?: EntityOptions ) {
+  constructor(game: Game, x: number, y: number, w: number, h: number, options?: EntityOptions ) {
     this.options = options;
     this.game = game;
     this.context = game.context;
@@ -25,8 +25,8 @@ class Entity {
     this.x = x;
     this.y = y;
 
-    this.width = 50;
-    this.height = 100;
+    this.width = w;
+    this.height = h;
 
     this.velocitySpeed = 0.009;
     this.velocity = 0;

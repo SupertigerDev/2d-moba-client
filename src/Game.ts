@@ -31,7 +31,7 @@ class Game {
 
     this.player = new Player(this, 100, 100,{controls: true});
 
-    this.tower = new Tower(this, 1800, 100, {controls: false});
+    this.tower = new Tower(this, 1600, 100, {controls: false});
 
   }
   frame (delta: number) {
